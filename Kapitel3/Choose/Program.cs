@@ -7,10 +7,10 @@ namespace Choose
         static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Welcome to \"Choose your own adventure.\" Press any key to begin.");
+            Console.WriteLine("Välkommen till \"Välj ditt äventyr\" Press any key to begin.");
             Console.ReadKey(true);
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("You're walking in the woods at night when the road suddenly splits in two. Write \"right\" or \"left\" to choose where to go.");
+            Console.Write("You're walking in the woods at night when the road suddenly splits in two. Write \"right\" or \"");
 
             string direction = Console.ReadLine();
             
