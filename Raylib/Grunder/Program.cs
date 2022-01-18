@@ -18,10 +18,10 @@ namespace Grunder
             // Animationsloppen
             while (!Raylib.WindowShouldClose())
             {
-                // Börja Rita
+                // Börja rita
                 Raylib.BeginDrawing();
 
-                // Tömma Ritytan
+                // Tömma ritytan
                 Raylib.ClearBackground(Color.DARKBLUE);
 
                 // Rita en fyrkant
