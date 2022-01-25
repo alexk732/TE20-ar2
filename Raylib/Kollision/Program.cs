@@ -29,7 +29,7 @@ namespace Kollision
                 // Räkna antalet frames
                 timer++;
 
-                // Avbryt spelet efter 60 sek
+                // Avbryt spelet efter en tid
                 if (timer > 3600)
                 {
                     Raylib.DrawText("Game Over", 100, 200, 100, Color.GOLD);
