@@ -37,7 +37,7 @@ namespace Snöflingor
             // Loopa igenom arrayen och fyll i snöflingornas hastighet
             for (var i = 0; i < flingor.Length; i++)
             {
-                hastighet[i] = generator.Next(1, 6);
+                hastighet[i] = generator.Next(3, 8);
             }
 
             // Animationsloopen
