@@ -6,24 +6,23 @@ namespace Dodgers
 {
     class Program
     {
+        static int fönsterB = 800;
+        static int fönsterH = 600;
+        static Random generator = new Random();
+        static Rectangle mynt = new Rectangle(generator.Next(0, 400), 0, 25, 25);
+        static Rectangle spelare = new Rectangle(350, fönsterH - 50, 100, 20);    
+        static Rectangle fiende = new Rectangle(generator.Next(0, 400), 0, 40, 40);
+
+        static int poäng = 0;
+        static int liv = 5;
+        
         static void Main(string[] args)
         {
-            // Initialisering
-            const int fönsterB = 800;
-            const int fönsterH = 600;
-
+            // Fönster
             Raylib.InitWindow(fönsterB, fönsterH, "Snöflingor");
             Raylib.SetTargetFPS(60);
 
-            // TODO: Infoga variabler och objekt här
-            Random generator = new Random();
-            Rectangle mynt = new Rectangle(generator.Next(0, 400), 0, 25, 25);
-            Rectangle spelare = new Rectangle(350, fönsterH - 50, 100, 20);
-            Rectangle fiende = new Rectangle(generator.Next(0, 400), 0, 40, 40);
-
             // Gamestate-variabler
-            int poäng = 0;
-            int liv = 5;
             int myntHastighet = 3;
             int fiendeHastighet = 6;
             float tid = 60;
@@ -73,40 +72,13 @@ namespace Dodgers
                 }
 
                 // Lyssna på tangenter
-                if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
-                {
-                    spelare.x -= 5;
-                }
-                if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
-                {
-                    spelare.x += 5;
-                }
+                Input();
 
                 // Kolla om spelaren är utanför skärmen
-                if (spelare.x < -100)
-                {
-                    spelare.x = 800;
-                }
-                if (spelare.x > 800)
-                {
-                    spelare.x = -100;
-                }
+                SkärmFörflyttning();
 
-                // Om spelaren träffar ett mynt
-                if (Raylib.CheckCollisionRecs(spelare, mynt))
-                {
-                    mynt.y = 0;
-                    poäng += 1;
-                    mynt.x = generator.Next(0, fönsterB);
-                }
-
-                // Om spelaren träffar en fiende
-                if (Raylib.CheckCollisionRecs(spelare, fiende))
-                {
-                    fiende.y = 0;
-                    liv -= 1;
-                    fiende.x = generator.Next(0, fönsterB);
-                }
+                // Kollisioner
+                Kollisioner();
 
                 // Rita
                 Raylib.BeginDrawing();
@@ -123,12 +95,46 @@ namespace Dodgers
                 Raylib.EndDrawing();
             }
             
-            /*
-            Raylib.DrawText("Spelet är slut!", 400, 400, 25, Color.WHITE);
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_ENTER))
+            static void Input()
             {
-                Raylib.EndDrawing();
-            }*/
+                if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
+                {
+                    spelare.x -= 5;
+                }
+                if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
+                {
+                    spelare.x += 5;
+                }
+            }
+            static void SkärmFörflyttning()
+            {
+                if (spelare.x < -100)
+                {
+                    spelare.x = 800;
+                }
+                if (spelare.x > 800)
+                {
+                    spelare.x = -100;
+                }
+            }
+            static void Kollisioner()
+            {
+                // Om spelaren träffar ett mynt
+                if (Raylib.CheckCollisionRecs(spelare, mynt))
+                {
+                    mynt.y = 0;
+                    poäng += 1;
+                    mynt.x = generator.Next(0, fönsterB);
+                }
+
+                // Om spelaren träffar en fiende
+                if (Raylib.CheckCollisionRecs(spelare, fiende))
+                {
+                    fiende.y = 0;
+                    liv -= 1;
+                    fiende.x = generator.Next(0, fönsterB);
+                }
+            }
         }
     }
 }
