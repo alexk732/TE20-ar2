@@ -11,7 +11,7 @@ namespace ovning_3
 
             // Använda metod 2
             PrintText32("Hej världen!");
-
+        
             // Använda metod 3
             Console.Write("Matat in ett tal 5-10: ");
             string stringTal = Console.ReadLine();
